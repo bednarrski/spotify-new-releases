@@ -33,8 +33,7 @@
 </image><item rdf:about="http://spotify.com">
 <title>2018-03-08 Spotify newest releases</title>
 <link>http://spotify.com</link>
-<description rdf:parseType="Literal">&lt;p&gt;New releases:
-
+<description rdf:parseType="Literal">&lt;p&gt;New releases:&lt;br/&gt;&lt;br/&gt;Caravan Palace - <I°_°I>&lt;br/&gt;Caravan Palace - Black Betty&lt;br/&gt;Steel Panther - That's When You Came In (Live Acoustic)
 &lt;/p&gt;
 </description>
 <dc:creator> &lt;&gt;Bednar&lt;/a&gt;</dc:creator>
