@@ -31,9 +31,10 @@
 <url>http://arxiv.org/icons/sfx.gif</url>
 <link>http://spotify.com</link>
 </image><item rdf:about="http://spotify.com">
-<title>TITLE</title>
+<title>2018-03-08 Spotify newest releases</title>
 <link>http://spotify.com</link>
-<description rdf:parseType="Literal">&lt;p&gt;DESCRIPTION
+<description rdf:parseType="Literal">&lt;p&gt;New releases:
+
 &lt;/p&gt;
 </description>
 <dc:creator> &lt;&gt;Bednar&lt;/a&gt;</dc:creator>
