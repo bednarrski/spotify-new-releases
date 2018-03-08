@@ -36,6 +36,6 @@
 <description rdf:parseType="Literal">&lt;p&gt;DESCRIPTION
 &lt;/p&gt;
 </description>
-<dc:creator> &lt;a href=&quot;http://arxiv.org/find/cs/1/au:+Hinz_T/0/1/0/all/0/1&quot;&gt;Tobias Hinz&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/find/cs/1/au:+Wermter_S/0/1/0/all/0/1&quot;&gt;Stefan Wermter&lt;/a&gt;</dc:creator>
+<dc:creator> &lt;Bednar&gt;</dc:creator>
 </item>
 </rdf:RDF>
