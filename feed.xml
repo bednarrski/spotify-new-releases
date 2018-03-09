@@ -9,13 +9,13 @@
  xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
  xmlns:admin="http://webns.net/mvcb/"
 >
-<channel rdf:about="http://arxiv.org/">
+<channel rdf:about="http://spotify.com/">
 <title>Spotify new releases</title>
-<link>http://arxiv.org/</link>
+<link>http://spotify.com/</link>
 <description rdf:parseType="Literal">Releases of followed artists on Spotify</description>
 <dc:language>en-us</dc:language>
 <dc:date>2018-03-07T20:30:00-05:00</dc:date>
-<dc:publisher>help@arxiv.org</dc:publisher>
+<dc:publisher>help@spotify.com</dc:publisher>
 <dc:subject>Music</dc:subject>
 <syn:updateBase>1901-01-01T00:00+00:00</syn:updateBase>
 <syn:updateFrequency>1</syn:updateFrequency>
@@ -24,16 +24,16 @@
  <rdf:Seq>
 <rdf:li rdf:resource="http://spotify.com"/></rdf:Seq>
 </items>
-<image rdf:resource="http://arxiv.org/icons/sfx.gif" />
+<image rdf:resource="https://www.scdn.co/i/_global/favicon.png" />
 </channel>
-<image rdf:about="http://arxiv.org/icons/sfx.gif">
+<image rdf:about="https://www.scdn.co/i/_global/favicon.png">
 <title>Spotify releases</title>
-<url>http://arxiv.org/icons/sfx.gif</url>
+<url>https://www.scdn.co/i/_global/favicon.png</url>
 <link>http://spotify.com</link>
 </image><item rdf:about="http://spotify.com">
-<title>2018-03-09 09:24 Spotify newest releases</title>
+<title>2018-03-09 09:54 Spotify newest releases</title>
 <link>http://spotify.com</link>
-<description rdf:parseType="Literal">&lt;p&gt;New releases:&lt;br&gt;&lt;br&gt;Linkin Park - One More Light Live&lt;br&gt;Linkin Park - One More Light&lt;br&gt;Linkin Park - Sharp Edges (One More Light Live)&lt;br&gt;Linkin Park - Crawling (One More Light Live)&lt;br&gt;Linkin Park - One More Light (Steve Aoki Chester Forever Remix)&lt;br&gt;Linkin Park - Darker Than The Light That Never Bleeds (Chester Forever Steve Aoki Remix)&lt;br&gt;Linkin Park - Heavy (feat. Kiiara) [Disero Remix]&lt;br&gt;Linkin Park - Heavy (feat. Kiiara) [Nicky Romero Remix]&lt;br&gt;Linkin Park - Heavy (feat. Kiiara)
+<description rdf:parseType="Literal">&lt;p&gt;New releases:&lt;br&gt;
 &lt;/p&gt;
 </description>
 <dc:creator> &lt;a&gt;Bednar&lt;/a&gt;</dc:creator>

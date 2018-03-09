@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from api import spotify_api
 import json
 import datetime
@@ -62,7 +64,7 @@ with open(albums_cache_file, 'a') as f:
 
             album_items = albums_json['items']
             for item in album_items:
-                print(item['name']+' -> '+item['release_date'])
+                print(item['name'].encode('utf-8')+' -> '.encode('utf-8')+item['release_date'].encode('utf-8'))
                 if item['id'] not in albums_list:
                     if current_year - int(item['release_date'][:4]) < max_album_age:
                         new_albums_dict[item['id']] = (artist, item['name'], item['release_date'])
@@ -132,7 +134,7 @@ for i in range(len(new_tracks)):
         
 # CREATING FEED
 
-with open('feed_stub.xml', 'r') as fs:
+with open('/home/piotr.bednarski/Repositories/spotify-new-releases/feed_stub.xml', 'r') as fs:
     feed_stub=fs.read()
     
 title = strftime("%Y-%m-%d %H:%M Spotify newest releases", gmtime())
@@ -144,7 +146,7 @@ for item in new_albums_dict:
 print(description)
 feed = re.sub('DESCRIPTION', description, feed, flags=(re.MULTILINE | re.DOTALL))
 
-with open('feed.xml', 'w', encoding='utf-8') as f:
+with open('/home/piotr.bednarski/Repositories/spotify-new-releases/feed.xml', 'w', encoding='utf-8') as f:
     f.write(feed)
     
 # SENDING FEED TO THE GIT REPO
