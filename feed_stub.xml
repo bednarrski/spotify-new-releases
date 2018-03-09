@@ -36,6 +36,6 @@
 <description rdf:parseType="Literal">&lt;p&gt;DESCRIPTION
 &lt;/p&gt;
 </description>
-<dc:creator> &lt;&gt;Bednar&lt;/a&gt;</dc:creator>
+<dc:creator> &lt;a&gt;Bednar&lt;/a&gt;</dc:creator>
 </item>
 </rdf:RDF>
