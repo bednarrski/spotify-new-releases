@@ -30,7 +30,7 @@ while(True):
     print('\n')
     artist_items = artists_json['artists']['items']
     for item in artist_items:
-        print(item['name']+' -> '+item['id'])
+        print(item['name'].encode('utf-8')+' -> '.encode('utf-8')+item['id'].encode('utf-8'))
         artists_dict[item['name']] = item['id']
 
     next_request = artists_json['artists']['next']
@@ -54,7 +54,7 @@ current_year = datetime.datetime.now().year
 with open(albums_cache_file, 'a') as f:
     for artist in artists_dict:
         artist_id = artists_dict[artist]
-        print('\nArtist: ' + artist)
+        print('\nArtist: '.encode('utf-8') + artist.encode('utf-8'))
 
         next_request = spotify_request_url + 'artists/'+artist_id+'/albums?limit=50&album_type=album,single&market=PL'
 
@@ -88,7 +88,7 @@ for album_id in new_albums_dict:
     
     tracks_items = tracks_json['items']
     for item in tracks_items:
-        print(item['name'] + ' -> ' + item['uri'])
+        print(item['name'].encode('utf-8') + ' -> '.encode('utf-8') + item['uri'].encode('utf-8'))
         new_tracks.append(item['uri'].strip())
         tracks_counter = tracks_counter + 1
         
