@@ -143,7 +143,7 @@ feed = re.sub('TITLE', title, feed_stub, flags=(re.MULTILINE | re.DOTALL))
 description = 'New releases:&lt;br&gt;'
 for item in new_albums_dict:
     description = description + '&lt;br&gt;' + new_albums_dict[item][0]+ ' - ' + new_albums_dict[item][1]
-print(description)
+#print(description.encode('utf-8'))
 feed = re.sub('DESCRIPTION', description, feed, flags=(re.MULTILINE | re.DOTALL))
 
 with open('/home/piotr.bednarski/Repositories/spotify-new-releases/feed.xml', 'w', encoding='utf-8') as f:
