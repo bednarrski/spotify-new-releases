@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
+import time
 
 def spotify_request(request):
     print("\nRequesting: {0}".format(request))
@@ -13,6 +14,14 @@ def spotify_request(request):
 
     print(r.status_code, r.reason)
     resp = r.json()
+    if r.status_code == 429:
+        print(resp)
+        print('Retrying...')
+        
+        time.sleep(2*int(r.headers['Retry-After']))
+        r = requests.get(url, headers=headers)
+        print(r.status_code, r.reason)
+        resp = r.json()
     return resp
 
 def refresh_token(settings_file):
