@@ -7,8 +7,8 @@ import re
 from time import gmtime, strftime
 import git
 
-settings_file = '/home/piotr.bednarski/Repositories/spotify-new-releases/api/settings.txt'
-albums_cache_file = '/home/piotr.bednarski/Repositories/spotify-new-releases/albums_cache.txt'
+settings_file = '/Users/bednar/Repositories/spotify-new-releases/api/settings.txt'
+albums_cache_file = '/Users/bednar/Repositories/spotify-new-releases/albums_cache.txt'
 
 max_album_age = 4 #years
 
@@ -137,7 +137,7 @@ for i in range(len(new_tracks)):
         
 # CREATING FEED
 
-with open('/home/piotr.bednarski/Repositories/spotify-new-releases/feed_stub.xml', 'r') as fs:
+with open('/Users/bednar/Repositories/spotify-new-releases/feed_stub.xml', 'r') as fs:
     feed_stub=fs.read()
     
 title = strftime("%Y-%m-%d %H:%M Spotify newest releases", gmtime())
@@ -149,12 +149,12 @@ for item in new_albums_dict:
 #print(description.encode('utf-8'))
 feed = re.sub('DESCRIPTION', description, feed, flags=(re.MULTILINE | re.DOTALL))
 
-with open('/home/piotr.bednarski/Repositories/spotify-new-releases/feed.xml', 'w', encoding='utf-8') as f:
+with open('/Users/bednar/Repositories/spotify-new-releases/feed.xml', 'w', encoding='utf-8') as f:
     f.write(feed)
     
 # SENDING FEED TO THE GIT REPO
 
-repo = git.Repo( '/home/piotr.bednarski/Repositories/spotify-new-releases' )
+repo = git.Repo( '/Users/bednar/Repositories/spotify-new-releases' )
 print(repo.git.add( '.' ))
 
 timestring = strftime("%Y%m%d_%H%M%S", gmtime())
