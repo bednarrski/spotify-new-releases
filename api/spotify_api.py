@@ -14,11 +14,15 @@ def spotify_request(request):
 
     print(r.status_code, r.reason)
     resp = r.json()
-    if r.status_code == 429:
+    if r.status_code == 429 or r.status_code == 54:
         print(resp)
         print('Retrying...')
         
-        time.sleep(2*int(r.headers['Retry-After']))
+        sleep_time = 2
+        if r.status_code == 429:
+            sleep_time = 2*int(r.headers['Retry-After'])
+            
+        time.sleep(sleep_time)
         r = requests.get(url, headers=headers)
         print(r.status_code, r.reason)
         resp = r.json()

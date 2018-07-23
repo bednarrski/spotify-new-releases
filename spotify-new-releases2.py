@@ -158,14 +158,14 @@ with open('/Users/bednar/Repositories/spotify-new-releases/feed.xml', 'w', encod
     
 # SENDING FEED TO THE GIT REPO
 
+os.remove(albums_cache_file)
+os.rename(albums_cache_file+'tmp', albums_cache_file)
+
 repo = git.Repo( '/Users/bednar/Repositories/spotify-new-releases' )
 print(repo.git.add( '.' ))
 
 timestring = strftime("%Y%m%d_%H%M%S", gmtime())
 message = '"Update at ' + timestring + '"'
-
-os.remove(albums_cache_file)
-os.rename(albums_cache_file+'tmp', albums_cache_file)
 
 print(repo.git.commit( m=message ))
 print(repo.git.push())
