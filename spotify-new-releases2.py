@@ -6,6 +6,8 @@ import datetime
 import re
 from time import gmtime, strftime
 import git
+import os
+from shutil import copyfile
 
 settings_file = '/Users/bednar/Repositories/spotify-new-releases/api/settings.txt'
 albums_cache_file = '/Users/bednar/Repositories/spotify-new-releases/albums_cache.txt'
@@ -46,12 +48,14 @@ albums_list = []
 with open(albums_cache_file, 'r') as f:
     for album_id in f.readlines():
         albums_list.append(album_id.strip())
+        
+copyfile(albums_cache_file, albums_cache_file+'tmp')
 
 new_albums_dict = {}
 new_album_counter = 0
 current_year = datetime.datetime.now().year
 
-with open(albums_cache_file, 'a') as f:
+with open(albums_cache_file+'tmp', 'a') as f:
     for artist in artists_dict:
         artist_id = artists_dict[artist]
         print('\nArtist: '.encode('utf-8') + artist.encode('utf-8'))
@@ -159,6 +163,9 @@ print(repo.git.add( '.' ))
 
 timestring = strftime("%Y%m%d_%H%M%S", gmtime())
 message = '"Update at ' + timestring + '"'
+
+os.remove(albums_cache_file)
+os.rename(albums_cache_file+'tmp', albums_cache_file)
 
 print(repo.git.commit( m=message ))
 print(repo.git.push())
