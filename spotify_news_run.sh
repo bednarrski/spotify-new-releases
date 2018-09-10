@@ -2,7 +2,7 @@
 
 filename='/Users/bednar/Logs/spotify_news_log.txt'
 
-if [[ $(find "$filename" -mmin +$((60*24*4)) -print) ]]; then
+if [[ $(find "$filename" -mmin +$((60*24*2)) -print) ]]; then
 	echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 	if [ $? -eq 0 ]; then
 
