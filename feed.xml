@@ -31,9 +31,9 @@
 <url>https://www.scdn.co/i/_global/favicon.png</url>
 <link>http://spotify.com</link>
 </image><item rdf:about="http://spotify.com">
-<title>2019-01-02 08:20 Spotify newest releases</title>
+<title>2019-01-02 08:22 Spotify newest releases</title>
 <link>http://spotify.com</link>
-<description rdf:parseType="Literal">&lt;p&gt;New releases:&lt;br&gt;&lt;br&gt;John 5 - Zoinks!&lt;br&gt;The Creatures - Believe in Yourself (Remix)&lt;br&gt;Nocny Kochanek - Randka w Ciemno&lt;br&gt;Nocny Kochanek - Czarna Czerń&lt;br&gt;Aesop Rock - Corn Maze&lt;br&gt;Leo - Baby´s On Fire (Metal Version)&lt;br&gt;Clock Machine - Love&lt;br&gt;N'to - Charlie
+<description rdf:parseType="Literal">&lt;p&gt;New releases:&lt;br&gt;
 &lt;/p&gt;
 </description>
 <dc:creator> &lt;a&gt;Bednar&lt;/a&gt;</dc:creator>
