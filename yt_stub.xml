@@ -1,0 +1,12 @@
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+<link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UCd2L_UI_jbljnJypTaf-k-Q"/>
+<id>yt:channel:UCd2L_UI_jbljnJypTaf-k-Q</id>
+<yt:channelId>UCd2L_UI_jbljnJypTaf-k-Q</yt:channelId>
+<title>Bednar</title>
+<link rel="alternate" href="https://www.youtube.com/channel/UCd2L_UI_jbljnJypTaf-k-Q"/>
+<author>
+<name>Bednar</name>
+<uri>
+https://www.youtube.com/channel/UCd2L_UI_jbljnJypTaf-k-Q
+</uri>
+</author>
