@@ -103,4 +103,4 @@ ENV/
 # data
 api/settings.txt
 
-*DS_Store
+DS_Store
