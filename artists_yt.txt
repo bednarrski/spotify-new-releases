@@ -5,15 +5,15 @@ Maroon 5
 Slipknot	UCOJZ1tna8yj8mAEITPkHNCQ		Yes			
 Taylor Swift	UCqECaJ8Gagnn7YCbPEzWH6g		Yes			
 God Is An Astronaut						
-Four Stroke Baron	ProstheticRecords	No	Yes			
+Four Stroke Baron	UCS0q46Mv9JmKKP4v2FpwMXg	No	Yes			
 Russian Circles						
 Serj Tankian						
 Hollywood Undead						
 Agnieszka Chylinska						
-Royal Republic						
+Royal Republic	UCi6xHR2FPSGnl0HKMo70onw		Yes			
 Deriglasoff						
 Shakira						
-Gojira						
+Gojira	UC34wpCgr3l9cG0RtFdTTS-Q		Yes			
 Pelican						
 Porcelain Black						
 Toska						
@@ -21,9 +21,9 @@ Volbeat
 Red Hot Chili Peppers	UCEuOwB9vSL1oPKGNdONB4ig		Yes			
 The Creatures						
 M.I.A.						
-Kvelertak						
+Kvelertak	UCevn3WJiZEdse2quTWPEvvQ		Yes			
 Mercyful Fate						
-Ellie Goulding						
+Ellie Goulding	UCt-am4x4ZyeohfgM85qFgdQ		Yes			
 Skyharbor						
 Type O Negative						
 Mötley Crüe						
@@ -45,7 +45,7 @@ Pantera
 The Algorithm						
 Limp Bizkit	UCCndqRyI-5Zl8Mutlq71ASw		Yes			
 Oh Hiroshima						
-Dwa Sławy	EMBRYO2008	No	Yes			
+Dwa Sławy	UCqR8XPrPbjmT5SQKD2dfJdA	No	Yes			
 Tides from nebula						
 Arcane						
 Motörhead						
@@ -65,14 +65,14 @@ Street Sweeper Social Club
 BI•AS						
 The Lonely Island	UCCHcEUksSVKsRDH86j77Ntg		Yes			
 Prophets Of Rage						
-Christina Aguilera						
-Hurrockaine						
+Christina Aguilera	UCgBN6eQyZPnsApiL1QW44Hg		Yes			
+Hurrockaine	UCqFmTiCM8TSiFcC_roYUy5A		Yes			
 Illusion						
 Karma To Burn						
 Pain of Salvation						
 Pearl Jam						
 Loser						
-RAU						
+RAU	UC_enGJdar2yiSiK080lXX7Q		Yes			
 Clawfinger						
 Jelonek						
 Knife Party						
@@ -106,14 +106,14 @@ NOVA
 edIT						
 Rob Zombie	UChWc6ilKdVM1Cz--wGMW_Zg		Yes			
 Baroness						
-Sister Sin	sistersinVEVO		Yes			
+Sister Sin	UCsOOLxax0PUDb3ZdsBkaYoA		Yes			
 Kult						
 Korn	UC6ly_u2ufiHGpYzC_28-8zw		Yes			
 Nujabes						
 Long Distance Calling						
 Disturbed						
-CKY	CKYVEVO		Yes			
-The Glitch Mob	glitchmob		Yes			
+CKY	UCaeXd3x76YYiTdi1VjG6XUQ		Yes			
+The Glitch Mob	UCvHzs2C_iK8VLV41JgQPyug		Yes			
 Meshuggah						
 Transgresja						
 Weezer						
@@ -188,10 +188,10 @@ Sithu Aye
 Nonpoint						
 Hyper						
 Dr. Dre						
-Butcher Babies	CenturyMedia	No	Yes			
+Butcher Babies	UCnK9PxMozTYs8ELOvgMNKFA	No	Yes			
 Faith No More						
 Emancipator						
-P.O.D.	AtlanticVideos	No	Yes			
+P.O.D.	UCe4LM_eKc9ywRmVuBm5pjQg	No	Yes			
 Motionless In White						
 Lipali						
 Infected Mushroom						
@@ -201,16 +201,16 @@ pg.lost
 Bong-Ra						
 Godsmack	UCe9rl8k6yymUeVzzXfFGWwA		Yes			
 Katy Perry	UCYvmuw-JtVrTZQ-7Y4kd63Q		Yes			
-DIAMANTE	ElevenSevenMusic	No	Yes			
+DIAMANTE	UCqh8RdUfSR9lGyasBhM_bjA	No	Yes			
 Portishead						
 Iron Maiden						
 Prop Dylan						
 Halestorm						
 Billie Eilish	UCiGm_E4ZwYSHV3bcW1pnSeQ		Yes			
-In This Moment	CenturyMedia	No	Yes			
+In This Moment	UCnK9PxMozTYs8ELOvgMNKFA	No	Yes			
 Madonna	UC81VD6eeuLLSfyY_D-N8sVw		Yes			
-Die Antwoord	ZEFRECORDZ		Yes			
-Airbourne	RoadrunnerRecords	No	Yes			
+Die Antwoord	UC6DicDItkLQ7N4ag1JS5mqg		Yes			
+Airbourne	UCRRxSTgPUY0q_YToaczc2BQ	No	Yes			
 Rammstein	UCYp3rk70ACGXQ4gFAiMr1SQ		Yes			
 Mike Shinoda						
 AC/DC	UCB0JSO6d5ysH2Mmqz5I9rIw		Yes			
@@ -224,12 +224,12 @@ Wayne Static
 Cult Of Luna						
 Cunninlynguists						
 We Lost The Sea						
-Static-X						
+Static-X	UC66CQBG8otTeydJKnpZkj-g		Yes			
 lostprophets						
 Arctic Monkeys						
 Eminem	UCfM3zsQsOnfWNUppiycmBuw		Yes			
 Fort Minor						
-Hilltop Hoods						
+Hilltop Hoods	UC3MvNfKIhwubtPr2LMOFSZA		Yes			
 Dope						
 Transmission Zero						
 Bullet For My Valentine						
@@ -244,3 +244,4 @@ N'to
 Metalocalypse: Dethklok						
 Dropkick Murphys						
 Oceans						
+RAU2	UCktMU-6wq3QYTnfog7TzAog	No	Yes			
