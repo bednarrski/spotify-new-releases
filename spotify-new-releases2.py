@@ -1,137 +1,138 @@
-# coding: utf-8
+# IMPORTS
 
 from api import spotify_api
 import json
-import datetime
+from datetime import datetime, timedelta
 import re
 from time import gmtime, strftime
 import git
-import os
-from shutil import copyfile
+import requests
+# https://gitpython.readthedocs.io/en/stable/intro.html
 
-settings_file = '/Users/bednar/Repositories/spotify-new-releases/api/settings.txt'
-albums_cache_file = '/Users/bednar/Repositories/spotify-new-releases/albums_cache.txt'
+settings_file = './api/settings.txt'
+albums_cache_file = './albums_cache.txt'
 
 max_album_age = 4 #years
 
-# GETTING ACCESS TOKEN FROM REFRESH TOKEN
+
+# REFRESHING THE TOKEN
 
 access_token = spotify_api.refresh_token(settings_file)
 
-# GETTING FOLLOWED ARTISTS
 
-spotify_request_url = 'https://api.spotify.com/v1/'
+# CHECK LAST SUCCESS
 
-next_request = spotify_request_url + 'me/following?type=artist&limit=30'
-artists_dict = {}
+last_success_file = "/Users/bednar/Logs/spotify_news_last_success.txt"
+datetime_format = "%Y-%m-%d %H:%M:%S"
 
-while(True):
-    next_request = next_request + '&access_token=' + access_token.strip()
-    artists_json = spotify_api.spotify_request(next_request)
+f = open(last_success_file, "r")
+last_success_datetime = datetime.strptime(f.read(), '%Y-%m-%d %H:%M:%S')
+print(f"Last success: {last_success_datetime}")
 
-    print('\n')
-    artist_items = artists_json['artists']['items']
-    for item in artist_items:
-        print(item['name'].encode('utf-8')+' -> '.encode('utf-8')+item['id'].encode('utf-8'))
-        artists_dict[item['name']] = item['id']
 
-    next_request = artists_json['artists']['next']
+# FUNCTION TO GET RECENT TRACKS USING API
+
+SPOTIFY_API_URL = 'https://api.spotify.com/v1'
+#AUTH_URL = 'https://accounts.spotify.com/api/token'
+
+def get_recent_tracks(token, artist_id, release_date):
+    """
+    Get recent tracks for a given artist ID and release date.
+    """
+    headers = {
+        'Authorization': f'Bearer {token}',
+    }
+
+    response = requests.get(f'{SPOTIFY_API_URL}/artists/{artist_id}/albums', headers=headers)
+    tracks = []
+
+    for album in response.json()['items']:
+        album_release_date = (album['release_date'] + "-01-01")[:10]
+        album_release_date = datetime.strptime(album_release_date, '%Y-%m-%d')
+        if album_release_date > release_date:
+            album_tracks_response = requests.get(f'{SPOTIFY_API_URL}/albums/{album["id"]}/tracks?limit=50', headers=headers)
+            tracks.extend(album_tracks_response.json()['items'])
+
+    return tracks
+
+
+# FUNCTION TO GET LIKED ARTISTS
+
+def get_liked_artists(token, verbose = False):
+    spotify_request_url = 'https://api.spotify.com/v1/'
+
+    next_request = spotify_request_url + 'me/following?type=artist&limit=10'
+    artists_dict = {}
+
+    while(True):
+        next_request = next_request + '&access_token=' + token.strip()
+        artists_json = spotify_api.spotify_request(next_request)
+
+        if verbose:
+            print('\n')
+        artist_items = artists_json['artists']['items']
+        for item in artist_items:
+            if verbose:
+                print(item['name']+' -> '+item['id'])
+            artists_dict[item['name']] = item['id']
+
+        next_request = artists_json['artists']['next']
+
+        if verbose:
+            print('\n')
+        if not next_request:
+            if verbose:
+                print("---END---")
+            break
+            
+    return artists_dict
+
+
+
+# GETTING LIKED ARTISTS
+
+liked_artists = get_liked_artists(access_token, False)
+
+# Get recent tracks for each liked artist
+all_recent_tracks = []
+for artist in liked_artists.keys():
+    artist_recent_tracks = get_recent_tracks(access_token, liked_artists[artist], last_success_datetime)
+    all_recent_tracks.extend(artist_recent_tracks)
+
+# Extract track URIs
+track_uris = [track['uri'] for track in all_recent_tracks]
+
+len(track_uris)
+
+
+# GET PLAYLISTS
+
+headers = {
+    'Authorization': f'Bearer {access_token.strip()}',
+}
+
+response = requests.get(f'{SPOTIFY_API_URL}/me/playlists', headers=headers)
+playlists = response.json()['items']
+
+for pl in playlists:
+    print(f"{pl['id']} : {pl['name']}")
     
-    print('\n')
-    if not next_request:
-        print("---END---")
-        break
-        
-# GETTING ALBUMS OF THESE ARTISTS
 
-albums_list = []
-with open(albums_cache_file, 'r') as f:
-    for album_id in f.readlines():
-        albums_list.append(album_id.strip())
-        
-copyfile(albums_cache_file, albums_cache_file+'tmp')
-
-new_albums_dict = {}
-new_album_counter = 0
-current_year = datetime.datetime.now().year
-
-with open(albums_cache_file+'tmp', 'a') as f:
-    for artist in artists_dict:
-        artist_id = artists_dict[artist]
-        print('\nArtist: '.encode('utf-8') + artist.encode('utf-8'))
-        if artist == 'OVERWERK':
-            print('OVERWERK -> SKIPPING!')
-            continue
-
-        next_request = spotify_request_url + 'artists/'+artist_id+'/albums?limit=50&album_type=album,single&market=PL'
-
-        while(True):
-            next_request = next_request + '&access_token=' + access_token.strip()
-            albums_json = spotify_api.spotify_request(next_request)
-
-            album_items = albums_json['items']
-            for item in album_items:
-                print(item['name'].encode('utf-8')+' -> '.encode('utf-8')+item['release_date'].encode('utf-8'))
-                if item['id'] not in albums_list:
-                    if current_year - int(item['release_date'][:4]) < max_album_age:
-                        new_albums_dict[item['id']] = (artist, item['name'], item['release_date'])
-                        f.write(item['id']+'\n')
-                        new_album_counter = new_album_counter + 1
-
-            next_request = albums_json['next']
-            if not next_request:
-                break
-                
-print('New albums: ' + str(new_album_counter))
-
-# GETTING THE SONGS
-
-tracks_counter = 0
-new_tracks = []
-
-for album_id in new_albums_dict:
-    next_request = spotify_request_url + 'albums/'+album_id+'/tracks?limit=50&access_token=' + access_token.strip()
-    tracks_json = spotify_api.spotify_request(next_request)
+# ITERATE THROUGH NEW ALBUMS AND ADD THEM TO MY PLAYLIST
     
-    tracks_items = tracks_json['items']
-    for item in tracks_items:
-        print(item['name'].encode('utf-8') + ' -> '.encode('utf-8') + item['uri'].encode('utf-8'))
-        new_tracks.append(item['uri'].strip())
-        tracks_counter = tracks_counter + 1
-        
-print('New tracks: ' + str(tracks_counter))
-
-# GETTING THE RIGHT PLAYSLIST
-
-next_request = 'https://api.spotify.com/v1/me/playlists?access_token=' + access_token.strip()
-playlists_json = spotify_api.spotify_request(next_request)
-
+max_tracks_per_request = 10
 my_playlist = '5QtunQsOyazjCStL8KNz3U'
-
-playlists_items = playlists_json['items']
-for item in playlists_items:
-    print(item['name'] + ' -> ' + item['id'])
-    if item['name'].strip() == 'Music News (Bednar)':
-        my_playlist = item['id'].strip()
-        
-print('\nMy playlist ID: ' + my_playlist)
-
-# UPLOADING THE PLAYLIST
-
-import requests
-
-max_tracks_per_request = 20
 url = 'https://api.spotify.com/v1/users/piotr.bednarski/playlists/' + my_playlist + '/tracks?uris='
 headers = {
     'Authorization' : 'Bearer ' + access_token.strip(),
     'Content-Type' : 'application/json'
 }
 url_full = url
-for i in range(len(new_tracks)):
-    #print(new_tracks[i])
-    url_full = url_full + new_tracks[i] + ','
+for i in range(len(track_uris)):
+    #print(track_uris[i])
+    url_full = url_full + track_uris[i] + ','
     
-    if (i%max_tracks_per_request == max_tracks_per_request-1) or (i == len(new_tracks)-1):
+    if (i%max_tracks_per_request == max_tracks_per_request-1) or (i == len(track_uris)-1):
         url_full = url_full[:-1]
         #print("Request!")
         r = requests.post(url_full, headers=headers)
@@ -139,34 +140,13 @@ for i in range(len(new_tracks)):
         print(r.status_code, r.reason)
         url_full = url
         
-# CREATING FEED
+        
+# STORE LAST SUCCESS DATE
 
-with open('/Users/bednar/Repositories/spotify-new-releases/feed_stub.xml', 'r') as fs:
-    feed_stub=fs.read()
-    
-title = strftime("%Y-%m-%d %H:%M Spotify newest releases", gmtime())
-feed = re.sub('TITLE', title, feed_stub, flags=(re.MULTILINE | re.DOTALL))
+last_success_datetime = datetime.now()
 
-description = 'New releases:&lt;br&gt;'
-for item in new_albums_dict:
-    description = description + '&lt;br&gt;' + new_albums_dict[item][0]+ ' - ' + new_albums_dict[item][1]
-#print(description.encode('utf-8'))
-feed = re.sub('DESCRIPTION', description, feed, flags=(re.MULTILINE | re.DOTALL))
+f = open(last_success_file, "w")
+f.write(last_success_datetime.strftime(datetime_format))
+f.close()
 
-with open('/Users/bednar/Repositories/spotify-new-releases/feed.xml', 'w', encoding='utf-8') as f:
-    f.write(feed)
-    
-# SENDING FEED TO THE GIT REPO
-
-os.remove(albums_cache_file)
-os.rename(albums_cache_file+'tmp', albums_cache_file)
-
-repo = git.Repo( '/Users/bednar/Repositories/spotify-new-releases' )
-print(repo.git.add( '.' ))
-
-timestring = strftime("%Y%m%d_%H%M%S", gmtime())
-message = '"Update at ' + timestring + '"'
-
-print(repo.git.commit( m=message ))
-print(repo.git.push())
-print(repo.git.status())
+print(f"New success date: {last_success_datetime}")
