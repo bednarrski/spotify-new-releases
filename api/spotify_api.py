@@ -4,19 +4,22 @@
 import requests
 import time
 
-def spotify_request(request):
-    print("\nRequesting: {0}".format(request))
+def spotify_request(request, verbose = False):
+    if verbose:
+        print("\nRequesting: {0}".format(request))
     
     url = request
     headers = {
     }
     r = requests.get(url, headers=headers)
 
-    print(r.status_code, r.reason)
+    if verbose:
+        print(r.status_code, r.reason)
     resp = r.json()
     if r.status_code == 429 or r.status_code == 54:
-        print(resp)
-        print('Retrying...')
+        if verbose:
+            print(resp)
+            print('Retrying...')
         
         sleep_time = 2
         if r.status_code == 429:
@@ -24,7 +27,8 @@ def spotify_request(request):
             
         time.sleep(sleep_time)
         r = requests.get(url, headers=headers)
-        print(r.status_code, r.reason)
+        if verbose:
+            print(r.status_code, r.reason)
         resp = r.json()
     return resp
 
